@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Index</title>
+		<link rel = "stylesheet" href = "css/bootstrap.min.css">
+		<script src = "js/jquery-3.1.1.min.js"></script>
+		<script src = "js/bootstrap.min.js"></script>
+	</head>
+	
+	<style>
+		.header {
+			position: fixed;
+			top:18%;
+			height:5px;
+			width: 100%;
+			background-color:black;
+		}
+
+		.title{
+			margin-top:5%;
+		}
+		
+		#secnd{
+			margin-top:3%;
+		}
+		
+		img{
+			margin-top:1%;
+		}
+
+		.btn{
+			width:80px;
+			height:80px;
+			margin-top:6%;
+			border-radius:20px;
+			border: 1px solid #e6e6e6;			
+		}
+
+	</style>
+	
+	<body>
+		<center>
+		<img src = "images/zai.jpg" class="rounded-circle" height="100px;" >
+		</center>
+	
+		<div class="header">
+		</div>
+				
+		<div class="title text-center">
+			<h2>Welcome to Boards & Bites <br> Which <strong>table</strong> are you located at?</h2>
+		</div>
+		<div class = "imagePane text-center">
+			<img src = "images/zai.jpg" id="secnd" class="rounded-circle" height="150px;" >		
+		</div>			
+
+		<center>
+				<button type = "button" class = "btn btn-light">	<h2>1</h2>	</button>
+				<button type = "button" class = "btn btn-light">	<h2>2</h2>	</button>
+				<button type = "button" class = "btn btn-light">	<h2>3</h2>	</button>
+				<button type = "button" class = "btn btn-light">	<h2>4</h2>	</button>
+				<button type = "button" class = "btn btn-light">	<h2>5</h2>	</button>
+				<button type = "button" class = "btn btn-light">	<h2>6</h2>	</button>
+				<button type = "button" class = "btn btn-light">	<h2>7</h2>	</button>
+				<button type = "button" class = "btn btn-light">	<h2>8</h2>	</button>
+			
+		
+		</center>
+		
+		
+		
+	</body>
+
+</html>
+
+<script>
+	$(document).ready(function(){
+		$( ".btn" ).click(function() {
+			window.location.replace ("#");
+		});
+	});
+	
+</script>
