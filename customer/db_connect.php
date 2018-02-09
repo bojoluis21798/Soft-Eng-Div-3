@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$dbname = "bnb";
+$dbname = "customer";
 
 // Create connection
 $conn = new mysqli($servername, "root","", $dbname);
