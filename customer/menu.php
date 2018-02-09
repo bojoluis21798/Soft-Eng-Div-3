@@ -132,10 +132,8 @@ include("check_session.php");
 			      </div>
 
 			      <!-- place the order summary here ~ -->
-			      <div class="modal-body">
-					 <blockquote class="blockquote">
-  						<p class="mb-0">Life is hell. I know everything in the universe, yet I could not fall in love. I was forever trapped in an infinite timeline of pain and suffering -- I envy death. Technology is just another thing to distract you from the real joys of life. Technology will kill you.</p>
-					 </blockquote>
+			      <div class="modal-body" id="orderModalBody">
+					 
 			      </div>
 			      
 			      <div class="modal-footer">
@@ -216,6 +214,27 @@ include("check_session.php");
 
 			//order button
 			$("#orderButton").on("click", function(){
+				$("#orderModalBody").text("");	
+
+				$.ajax({
+					url: "crud_read.php",
+					method: "POST",
+					data: {menuType: "food", operation: "loadOrder"},
+					dataType: "JSON",
+					success: function(data){
+						if(data.length > 0){
+							var entries = data.sort();
+							loadOrder(entries);
+						} else {
+							$("#orderModalBody").append("<div class='col-sm-12 text-center'>No Orders Yet!</div>");
+						}
+					}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log(XMLHttpRequest.responseText);
+			        	alert("Status: " + textStatus); 
+			        	alert("Error: " + errorThrown);
+			    	}
+				});
+
 				$('#orderModal').modal('show');
 			});
 
@@ -243,5 +262,18 @@ include("check_session.php");
 		//--- END OF BODYBUTTONS			
 
 		});		
+
+		function loadOrder ( entries ) {
+			var ctr = 1;
+
+			for(i = 0; i < entries.length; i++) {
+				if((i + 1 < entries.length) && (entries[i][0] === entries[i+1][0])) {
+					ctr++;
+				} else {
+					$("#orderModalBody").append("<div class = 'row'><div class='col-sm-4 text-center'>"+ctr+"x"+"</div><div class='col-sm-8'>"+entries[i][1]+"</div></div>");
+					ctr = 1;
+				}
+			}
+		}
 	</script>
 </html>

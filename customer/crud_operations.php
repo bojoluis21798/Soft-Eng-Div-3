@@ -9,10 +9,25 @@
 
 		switch($_POST['operation']) {
 			case "create": 	
-				$sql = "INSERT INTO tables_menu ('TableID', 'MenuID', )";
+				if( isset($_POST['menuId']) ) {
+					$sql = "INSERT INTO tables_menu (TableID, MenuID, Status) VALUES ('".$_SESSION['tableId']."', '".$_POST['menuId']."', 'pending');";
+
+					if($conn->query($sql)) {
+						$ret = true;
+					}
+
+				}
+
 				break;
-			case "read": 
-				if($_POST['menuType']) {
+
+			case "read":
+				if( isset($_POST['readType']) ){
+					switch() {
+						case "": 
+					} 
+				}
+				
+				if( isset($_POST['menuType']) ) {
 					$sql = "SELECT menuID, Name FROM menu WHERE Type = '".$_POST['menuType']."'";
 
 					if($result = $conn->query($sql)) {

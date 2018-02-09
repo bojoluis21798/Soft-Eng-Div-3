@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2018 at 08:07 PM
+-- Generation Time: Feb 09, 2018 at 08:35 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -103,7 +103,7 @@ CREATE TABLE `tables_menu` (
   `OrderID` int(11) NOT NULL,
   `TableID` int(11) NOT NULL,
   `MenuID` varchar(64) NOT NULL,
-  `Status` enum('pending','received','','') NOT NULL
+  `Status` enum('pending','received','complete') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

@@ -156,7 +156,7 @@ include("check_session.php");
 			      </div>
 			      
 			      <div class="modal-footer">
-			      	<button type="button" class="btn btn-secondary" data-dismiss="">Add</button>
+			      	<button type="button" class="btn btn-secondary modalAddBtn" data-dismiss="">Add</button>
 			        <button type="button" id="addModalCloseBtn" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 			      </div>
 			    </div>
@@ -169,19 +169,17 @@ include("check_session.php");
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <h5 class="modal-title" id="exampleModalLabel">Order Summary</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			        <button type="button" class="close" id="modalOrderClose" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 
-			      <div class="modal-body">
-					 <blockquote class="blockquote">
-  						<p class="mb-0">Life is hell. I know everything in the universe, yet I could not fall in love. I was forever trapped in an infinite timeline of pain and suffering -- I envy death. Technology is just another thing to distract you from the real joys of life. Technology will kill you.</p>
-					 </blockquote>
+			      <div class="modal-body" id="orderModalBody">
+					 
 			      </div>
 			      
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-secondary" id="modalOrderCloseBtn" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>
 			  </div>
@@ -256,13 +254,15 @@ include("check_session.php");
 	</body>
 
 	<script>
+		var menuId;
+		var qty;
 		$(document).ready(function(){
 
 		//--- Load the menu items
 			$.ajax({
-				url: "crud_operations.php",
+				url: "crud_read.php",
 				method: "POST",
-				data: {menuType : "drinks", operation: "read"}, 
+				data: {menuType : "drinks", operation: "loadMenu",}, 
 				dataType: "json",
 				success: function(data){
 					console.log(data);
@@ -271,7 +271,7 @@ include("check_session.php");
 					} else {
 
 						for(var x = 0; x < data.length; x++){
-							loadRow(data[x][1]);
+							loadRow(data[x][1], data[x][0]);
 						}
 
 					}
@@ -292,6 +292,27 @@ include("check_session.php");
 
 			//order button
 			$("#orderButton").on("click", function(){
+				$("#orderModalBody").text("");	
+
+				$.ajax({
+					url: "crud_read.php",
+					method: "POST",
+					data: {menuType: "food", operation: "loadOrder"},
+					dataType: "JSON",
+					success: function(data){
+						if(data.length > 0){
+							var entries = data.sort();
+							loadOrder(entries);
+						} else {
+							$("#orderModalBody").append("<div class='col-sm-12 text-center'>No Orders Yet!</div>");
+						}
+					}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log(XMLHttpRequest.responseText);
+			        	alert("Status: " + textStatus); 
+			        	alert("Error: " + errorThrown);
+			    	}
+				});
+
 				$('#orderModal').modal('show');
 			});
 
@@ -310,16 +331,36 @@ include("check_session.php");
 
 			//--- END SIDE BAR
 
-			$(".addBtn").on("click", function(){
-				$('#addModal').modal('show');
+			$(document).on("click", ".addBtn", function(){
+				$('#addModal').modal();
 				$('#addModal').find('#addModalLabel').text($(this).parent().children(".foodLabel").text());
+				menuId = $(this).parent().children(".foodId").val();
 			});
 
 			//--- INSIDE MODAL
 
 			$(".modalAddBtn").on("click", function(){
-				//$.ajax({})
-				// HAVE TO ADD AJAX
+				qty =parseInt($("#qtyOrder").val());
+
+				if(qty > 0) {
+					$.ajax({
+						url: "crud_create.php",
+						method: "POST",
+						data: {menuId: menuId, operation: "addOrder", quantity: qty}, 
+						dataType: "text",
+						success: function(data){
+							if(data) {
+								//Add a success thingy
+							}
+						}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+							alert(XMLHttpRequest.responseText);
+			        		alert("Status: " + textStatus); 
+			        		alert("Error: " + errorThrown);
+			    		}
+					});
+				} else {
+					//Make it throw an Error!
+				}
 			});
 
 			$("#addModalClose").on("click", function(){
@@ -332,9 +373,22 @@ include("check_session.php");
 		});		
 
 		// A function that adds rows to .tablePane everytime it is called. It accepts the name of the product or any string lel
-		function loadRow ( productName ){
+		function loadRow ( productName, productId ){
 			// $(".tablePane").append("<div class = 'row'>	<div class = 'col-sm-12'> <div class = 'foodRow col-sm-8'>"+productName+" </div> <div class = 'col-sm-4'><button type = 'button' class = 'addBtn btn btn-light'>Add</button></div></div></div>");	
-			$(".tablePane").append("<div class = 'foodRow'><span class='foodLabel'>"+productName+"</span><button type = 'button' class = 'addBtn btn btn-light'>Add</button> </div>")		
+			$(".tablePane").append("<div class ='foodRow'><span class = 'foodLabel'>"+productName+"</span> <button type='button' class='addBtn btn btn-light'>Add</button><input type='hidden' class='foodId' value='"+productId+"'> </div>")		
+		}
+
+		function loadOrder ( entries ) {
+			var ctr = 1;
+
+			for(i = 0; i < entries.length; i++) {
+				if((i + 1 < entries.length) && (entries[i][0] === entries[i+1][0])) {
+					ctr++;
+				} else {
+					$("#orderModalBody").append("<div class = 'row'><div class='col-sm-4 text-center'>"+ctr+"x"+"</div><div class='col-sm-8'>"+entries[i][1]+"</div></div>");
+					ctr = 1;
+				}
+			}
 		}
 	</script>
 </html>
