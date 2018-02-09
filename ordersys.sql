@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2018 at 03:12 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 5.6.33
+-- Generation Time: Feb 09, 2018 at 08:07 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ordersys`
+-- Database: `customer`
 --
 
 -- --------------------------------------------------------
@@ -39,7 +37,7 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`MenuID`, `Name`, `Type`) VALUES
-('anwrtbeer', 'A&W\'s Root Beer', 'drinks'),
+('anwrtbeer', 'A&W''s Root Beer', 'drinks'),
 ('bbqjgrblts', 'BBQ Jenga Riblets', 'food'),
 ('bfprs', 'Beef Pares', 'food'),
 ('blurspbry', 'Blue Raspberry', 'drinks'),
@@ -50,7 +48,7 @@ INSERT INTO `menu` (`MenuID`, `Name`, `Type`) VALUES
 ('csmflfrs', 'Catch-some-falling-Fries', 'food'),
 ('cthludgs', 'Cthulhu Dogs', 'food'),
 ('drppr', 'Dr. Pepper Cherry Soda', 'drinks'),
-('dysggrale', 'Day\'s Ginger Ale', 'drinks'),
+('dysggrale', 'Day''s Ginger Ale', 'drinks'),
 ('grnapl', 'Green Apple', 'drinks'),
 ('jvachp', 'Java Chip', 'drinks'),
 ('kbkckn', 'Kabuki Chicken', 'food'),
@@ -78,8 +76,22 @@ INSERT INTO `menu` (`MenuID`, `Name`, `Type`) VALUES
 
 CREATE TABLE `tables` (
   `TableID` int(11) NOT NULL,
-  `Status` enum('pending','served','paid','') NOT NULL
+  `Status` enum('empty','pending','served','paid','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tables`
+--
+
+INSERT INTO `tables` (`TableID`, `Status`) VALUES
+(1, 'empty'),
+(2, 'empty'),
+(3, 'empty'),
+(4, 'empty'),
+(5, 'empty'),
+(6, 'empty'),
+(7, 'empty'),
+(8, 'empty');
 
 -- --------------------------------------------------------
 
@@ -154,7 +166,6 @@ ALTER TABLE `types`
 --
 ALTER TABLE `tables_menu`
   MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- Constraints for dumped tables
 --
@@ -171,7 +182,6 @@ ALTER TABLE `menu`
 ALTER TABLE `tables_menu`
   ADD CONSTRAINT `tables_menu_ibfk_1` FOREIGN KEY (`TableID`) REFERENCES `tables` (`TableID`),
   ADD CONSTRAINT `tables_menu_ibfk_2` FOREIGN KEY (`MenuID`) REFERENCES `menu` (`MenuID`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
