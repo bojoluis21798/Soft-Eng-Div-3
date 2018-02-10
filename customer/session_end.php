@@ -1,17 +1,29 @@
 <?php
-session_start();
+	session_start();
 
-include("db_connect.php");
+	include("db_connect.php");
 
-$sql = "UPDATE tables SET Status = 'empty' WHERE TableID = '".$_SESSION['tableId']."'";
 
-$conn->query($sql);
+	// sets the table status to empty
+	$sql = "UPDATE tables SET Status = 'empty' WHERE TableID = '".$_SESSION['tableId']."'";
 
-// remove all session variables
-session_unset(); 
+	$conn->query($sql);
 
-// destroy the session 
-session_destroy(); 
+	//sets all the previous orders to complete to archive them
+	$sql = "SELECT OrderID FROM tables_menu WHERE TableID = '".$_SESSION['tableId']."'";
 
-header("Location: index.php");
+	$result = $conn->query($sql); 
+
+	while($row = $result->fetch_row()) {
+		$sql = "UPDATE tables_menu SET Status = 'complete' WHERE OrderID = '".$row[0]."'";
+		$conn->query($sql);
+	}
+
+	// remove all session variables
+	session_unset(); 
+
+	// destroy the session 
+	session_destroy(); 
+
+	header("Location: index.php");
 ?>
