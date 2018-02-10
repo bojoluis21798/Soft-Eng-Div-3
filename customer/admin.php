@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-
+	require('db_connect.php');
+	$ctr = 1;
 ?>
 <html>
 <head>
@@ -91,35 +92,71 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
+
 			<div class="col-md-6 content-container red">
 				<div class="card">
 					<div class="card-header">
 						<h2>Table 1</h2>
-						<h6>Pending</h6>
+						<h6>
+							<?php
+								$query = "SELECT Status FROM tables WHERE TableID ='".$ctr."'";
+
+								$result = mysqli_query($conn, $query);
+
+								if($result){
+									$row = mysqli_fetch_assoc($result);
+
+									echo ucfirst($row['Status']);
+								}
+							?>
+						</h6>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h4>Food Item Number 1</h4>
-							<button type="button" class="btn btn-success">Ok</button>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group list-group-flush orderList">
+						<?php
+							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							AND TableID =".$ctr++."";
+							$result = mysqli_query($conn, $query);
+							$btn = "btn btn-success";
+							if($result){
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+								}
+							}
+						?>
 					</ul>
 				</div>
 			</div>
+
 			<div class="col-md-6 content-container blue">
 				<div class="card">
 					<div class="card-header">
 						<h2>Table 2</h2>
-						<h6>Pending</h6>
+						<h6>
+							<?php
+								$query = "SELECT Status FROM tables WHERE TableID ='".$ctr."'";
+
+								$result = mysqli_query($conn, $query);
+
+								if($result){
+									$row = mysqli_fetch_assoc($result);
+
+									echo ucfirst($row['Status']);
+								}
+							?>
+						</h6>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h4>Food Item Number 1</h4>
-							<button type="button" class="btn btn-success">Ok</button>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group list-group-flush orderList">
+						<?php
+							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							AND TableID =".$ctr++."";
+							$result = mysqli_query($conn, $query);
+							$btn = "btn btn-success";
+							if($result){
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+								}
+							}
+						?>
 					</ul>
 				</div>
 			</div>
@@ -130,31 +167,66 @@
 				<div class="card">
 					<div class="card-header">
 						<h2>Table 3</h2>
-						<h6>Pending</h6>
+						<h6>
+							<?php
+								$query = "SELECT Status FROM tables WHERE TableID ='".$ctr."'";
+
+								$result = mysqli_query($conn, $query);
+
+								if($result){
+									$row = mysqli_fetch_assoc($result);
+
+									echo ucfirst($row['Status']);
+								}
+							?>
+						</h6>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h4>Food Item Number 1</h4>
-							<button type="button" class="btn btn-success">Ok</button>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group list-group-flush orderList">
+						<?php
+							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							AND TableID =".$ctr++."";
+							$result = mysqli_query($conn, $query);
+							$btn = "btn btn-success";
+							if($result){
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+								}
+							}
+						?>
 					</ul>
 				</div>
 			</div>
+
 			<div class="col-md-6 content-container green">
 				<div class="card">
 					<div class="card-header">
 						<h2>Table 4</h2>
-						<h6>Pending</h6>
+						<h6>
+							<?php
+								$query = "SELECT Status FROM tables WHERE TableID ='".$ctr."'";
+
+								$result = mysqli_query($conn, $query);
+
+								if($result){
+									$row = mysqli_fetch_assoc($result);
+
+									echo ucfirst($row['Status']);
+								}
+							?>
+						</h6>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h4>Food Item Number 1</h4>
-							<button type="button" class="btn btn-success">Ok</button>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group list-group-flush orderList">
+						<?php
+							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							AND TableID =".$ctr++."";
+							$result = mysqli_query($conn, $query);
+							$btn = "btn btn-success";
+							if($result){
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+								}
+							}
+						?>
 					</ul>
 				</div>
 			</div>
@@ -165,31 +237,66 @@
 				<div class="card">
 					<div class="card-header">
 						<h2>Table 5</h2>
-						<h6>Pending</h6>
+						<h6>
+							<?php
+								$query = "SELECT Status FROM tables WHERE TableID ='".$ctr."'";
+
+								$result = mysqli_query($conn, $query);
+
+								if($result){
+									$row = mysqli_fetch_assoc($result);
+
+									echo ucfirst($row['Status']);
+								}
+							?>
+						</h6>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h4>Food Item Number 1</h4>
-							<button type="button" class="btn btn-success">Ok</button>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group list-group-flush orderList">
+						<?php
+							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							AND TableID =".$ctr++."";
+							$result = mysqli_query($conn, $query);
+							$btn = "btn btn-success";
+							if($result){
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+								}
+							}
+						?>
 					</ul>
 				</div>
 			</div>
+
 			<div class="col-md-6 content-container purple">
 				<div class="card">
 					<div class="card-header">
 						<h2>Table 6</h2>
-						<h6>Pending</h6>
+						<h6>
+							<?php
+								$query = "SELECT Status FROM tables WHERE TableID ='".$ctr."'";
+
+								$result = mysqli_query($conn, $query);
+
+								if($result){
+									$row = mysqli_fetch_assoc($result);
+
+									echo ucfirst($row['Status']);
+								}
+							?>
+						</h6>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h4>Food Item Number 1</h4>
-							<button type="button" class="btn btn-success">Ok</button>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group list-group-flush orderList">
+						<?php
+							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							AND TableID =".$ctr++."";
+							$result = mysqli_query($conn, $query);
+							$btn = "btn btn-success";
+							if($result){
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+								}
+							}
+						?>
 					</ul>
 				</div>
 			</div>
@@ -200,31 +307,66 @@
 				<div class="card">
 					<div class="card-header">
 						<h2>Table 7</h2>
-						<h6>Pending</h6>
+						<h6>
+							<?php
+								$query = "SELECT Status FROM tables WHERE TableID ='".$ctr."'";
+
+								$result = mysqli_query($conn, $query);
+
+								if($result){
+									$row = mysqli_fetch_assoc($result);
+
+									echo ucfirst($row['Status']);
+								}
+							?>
+						</h6>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h4>Food Item Number 1</h4>
-							<button type="button" class="btn btn-success">Ok</button>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group list-group-flush orderList">
+						<?php
+							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							AND TableID =".$ctr++."";
+							$result = mysqli_query($conn, $query);
+							$btn = "btn btn-success";
+							if($result){
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+								}
+							}
+						?>
 					</ul>
 				</div>
 			</div>
+			
 			<div class="col-md-6 content-container">
 				<div class="card">
 					<div class="card-header">
 						<h2>Table 8</h2>
-						<h6>Pending</h6>
+						<h6>
+							<?php
+								$query = "SELECT Status FROM tables WHERE TableID ='".$ctr."'";
+
+								$result = mysqli_query($conn, $query);
+
+								if($result){
+									$row = mysqli_fetch_assoc($result);
+
+									echo ucfirst($row['Status']);
+								}
+							?>
+						</h6>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h4>Food Item Number 1</h4>
-							<button type="button" class="btn btn-success">Ok</button>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group list-group-flush orderList">
+						<?php
+							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							AND TableID =".$ctr++."";
+							$result = mysqli_query($conn, $query);
+							$btn = "btn btn-success";
+							if($result){
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+								}
+							}
+						?>
 					</ul>
 				</div>
 			</div>
