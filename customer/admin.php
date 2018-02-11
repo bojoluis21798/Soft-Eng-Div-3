@@ -2,6 +2,8 @@
 <?php
 	require('db_connect.php');
 	$ctr = 1;
+	$order = 1;
+
 ?>
 <html>
 <head>
@@ -86,6 +88,8 @@
 		display: inline;
 	}
 
+
+
 </style>
 
 </head>
@@ -113,13 +117,15 @@
 					</div>
 					<ul class="list-group list-group-flush orderList">
 						<?php
-							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							$query = "SELECT tables_menu.TableID, tables_menu.OrderID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
 							AND TableID =".$ctr++."";
 							$result = mysqli_query($conn, $query);
 							$btn = "btn btn-success";
+							$tableNum = $ctr - 1;
+
 							if($result){
 								while ($row = mysqli_fetch_assoc($result)){
-									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><h5 hidden>{$row['OrderID']}</h5><p hidden>".$tableNum."</p><button type="."button"." class=".$btn.">Ok</button></li>";
 								}
 							}
 						?>
@@ -147,13 +153,14 @@
 					</div>
 					<ul class="list-group list-group-flush orderList">
 						<?php
-							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							$query = "SELECT tables_menu.TableID, tables_menu.OrderID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
 							AND TableID =".$ctr++."";
 							$result = mysqli_query($conn, $query);
 							$btn = "btn btn-success";
+							$tableNum = $ctr - 1;
 							if($result){
 								while ($row = mysqli_fetch_assoc($result)){
-									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><h5 hidden>{$row['OrderID']}</h5><p hidden>".$tableNum."</p><button type="."button"." class=".$btn.">Ok</button></li>";
 								}
 							}
 						?>
@@ -183,13 +190,14 @@
 					</div>
 					<ul class="list-group list-group-flush orderList">
 						<?php
-							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							$query = "SELECT tables_menu.TableID, tables_menu.OrderID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
 							AND TableID =".$ctr++."";
 							$result = mysqli_query($conn, $query);
 							$btn = "btn btn-success";
+							$tableNum = $ctr - 1;
 							if($result){
 								while ($row = mysqli_fetch_assoc($result)){
-									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><h5 hidden>{$row['OrderID']}</h5><p hidden>".$tableNum."</p><button type="."button"." class=".$btn.">Ok</button></li>";
 								}
 							}
 						?>
@@ -217,13 +225,14 @@
 					</div>
 					<ul class="list-group list-group-flush orderList">
 						<?php
-							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							$query = "SELECT tables_menu.TableID, tables_menu.OrderID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
 							AND TableID =".$ctr++."";
 							$result = mysqli_query($conn, $query);
 							$btn = "btn btn-success";
+							$tableNum = $ctr - 1;
 							if($result){
 								while ($row = mysqli_fetch_assoc($result)){
-									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><h5 hidden>{$row['OrderID']}</h5><p hidden>".$tableNum."</p><button type="."button"." class=".$btn.">Ok</button></li>";
 								}
 							}
 						?>
@@ -253,13 +262,14 @@
 					</div>
 					<ul class="list-group list-group-flush orderList">
 						<?php
-							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							$query = "SELECT tables_menu.TableID, tables_menu.OrderID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
 							AND TableID =".$ctr++."";
 							$result = mysqli_query($conn, $query);
 							$btn = "btn btn-success";
+							$tableNum = $ctr - 1;
 							if($result){
 								while ($row = mysqli_fetch_assoc($result)){
-									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><h5 hidden>{$row['OrderID']}</h5><p hidden>".$tableNum."</p><button type="."button"." class=".$btn.">Ok</button></li>";
 								}
 							}
 						?>
@@ -287,13 +297,14 @@
 					</div>
 					<ul class="list-group list-group-flush orderList">
 						<?php
-							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							$query = "SELECT tables_menu.TableID, tables_menu.OrderID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
 							AND TableID =".$ctr++."";
 							$result = mysqli_query($conn, $query);
 							$btn = "btn btn-success";
+							$tableNum = $ctr - 1;
 							if($result){
 								while ($row = mysqli_fetch_assoc($result)){
-									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><h5 hidden>{$row['OrderID']}</h5><p hidden>".$tableNum."</p><button type="."button"." class=".$btn.">Ok</button></li>";
 								}
 							}
 						?>
@@ -323,13 +334,14 @@
 					</div>
 					<ul class="list-group list-group-flush orderList">
 						<?php
-							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							$query = "SELECT tables_menu.TableID, tables_menu.OrderID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
 							AND TableID =".$ctr++."";
 							$result = mysqli_query($conn, $query);
 							$btn = "btn btn-success";
+							$tableNum = $ctr - 1;
 							if($result){
 								while ($row = mysqli_fetch_assoc($result)){
-									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><h5 hidden>{$row['OrderID']}</h5><p hidden>".$tableNum."</p><button type="."button"." class=".$btn.">Ok</button></li>";
 								}
 							}
 						?>
@@ -357,13 +369,14 @@
 					</div>
 					<ul class="list-group list-group-flush orderList">
 						<?php
-							$query = "SELECT tables_menu.TableID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
+							$query = "SELECT tables_menu.TableID, tables_menu.OrderID, menu.Name FROM tables_menu INNER JOIN menu ON tables_menu.MenuID = menu.MenuID WHERE Status = 'pending'
 							AND TableID =".$ctr++."";
 							$result = mysqli_query($conn, $query);
 							$btn = "btn btn-success";
+							$tableNum = $ctr - 1;
 							if($result){
 								while ($row = mysqli_fetch_assoc($result)){
-									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><button type="."button"." class=".$btn.">Ok</button></li>";
+									echo "<li class ="."list-group-item"." ><h4>{$row['Name']}</h4><h5 hidden>{$row['OrderID']}</h5><p hidden>".$tableNum."</p><button type="."button"." class=".$btn.">Ok</button></li>";
 								}
 							}
 						?>
@@ -377,5 +390,26 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function(){});
+    $(document).ready(function(){
+    	$(document).on("click", ".btn", function(){
+    		//alert("p is: "+$(this).parent().children("p").text()+" and h5 is "+$(this).parent().children("h5").text());
+    		$.ajax({
+    			url: "crud_update.php",
+    			method: "POST",
+    			data: {TableID: $(this).parent().children("p").text(),
+    				  OrderID: $(this).parent().children("h5").text(),
+    				  operation: "setOrderStatus"},
+    			datatype: "text",
+    			success: function(data){
+					if(data) {
+						//alert(data);
+					} 
+				}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(XMLHttpRequest.responseText);
+	        		alert("Status: " + textStatus);
+	        		alert("Error: " + errorThrown);
+	    		}
+    		});
+		});
+    });
 </script>
