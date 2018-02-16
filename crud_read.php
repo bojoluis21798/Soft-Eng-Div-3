@@ -28,7 +28,11 @@
 
 			case "loadOrder": 
 
-				$sql = "SELECT menu.\Names FROM tables_menu WHERE Type = '".$_POST['menuType']."'";
+				$sql = "SELECT tables_menu.MenuID, menu.Name 
+						FROM tables_menu 
+						INNER JOIN menu 
+						ON tables_menu.MenuID = menu.MenuID 
+						WHERE tables_menu.TableID = '".$_SESSION['tableId']."' AND (tables_menu.Status = 'pending' OR tables_menu.Status = 'received')";
 
 				if($result = $conn->query($sql)) {
 					$ret = array();
@@ -37,9 +41,7 @@
 						array_push($ret, $row);
 					}
 
-					if( !empty($ret) ){
-						$ret = json_encode($ret);	
-					}
+					$ret = json_encode($ret);	
 				}
 
 				break;
